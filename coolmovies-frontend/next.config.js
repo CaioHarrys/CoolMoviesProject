@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 module.exports = {
   compiler: {
     emotion: true,
@@ -11,5 +13,4 @@ module.exports = {
       },
     ];
   },
-  reactStrictMode: true,
 };
