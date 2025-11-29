@@ -13,9 +13,9 @@ import { memo } from "react";
 import { useCurrentUserLazyQuery } from "../../../generated/graphql";
 import { FetchButton } from "../components/FetchButton";
 import React from "react";
-import ReviewsPage  from "./ReviewsPage";
+import ReviewsPage  from "../../../pages/ReviewsPage";
 
-const primary = "#1976d2";
+const primary = "#F25757";
 
 const Example = () => {
   const dispatch = useAppDispatch();
