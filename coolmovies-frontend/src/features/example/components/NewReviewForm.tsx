@@ -14,14 +14,12 @@ import {
 import { useState } from "react";
 
 const colors = {
-  bg: "#0F0F0F",
-  surface: "#141414",
-  surface2: "#1F1F1F",
+  bg: "#0A0A0A",
+  surface: "#121212",
+  surface2: "#1A1A1A",
   red: "#E50914",
-  textPrimary: "#FFFFFF",
-  textSecondary: "#B3B3B3",
-  textMuted: "#666666",
-  border: "#333333",
+  white: "#FFFFFF",
+  border: "#2A2A2A",
 };
 
 interface Movie {
@@ -56,6 +54,49 @@ export default function NewReviewForm({
     rating: 5,
   });
 
+  const inputStyles = {
+    "& .MuiInputLabel-root": {
+      color: colors.white,
+      fontWeight: "bold",
+      "&.Mui-focused": {
+        color: colors.red,
+      },
+    },
+    "& .MuiFilledInput-root": {
+      backgroundColor: colors.surface2,
+      borderRadius: 6,
+      color: colors.white,
+      border: `1px solid ${colors.border}`,
+      transition: "all 0.2s ease-in-out",
+      "&::before": {
+        display: "none !important",
+      },
+      "&::after": {
+        display: "none !important",
+      },
+      "&:hover": {
+        backgroundColor: "#222222 !important",
+        borderColor: colors.red,
+        boxShadow: "0 0 0 1px rgba(229, 9, 20, 0.2)",
+      },
+      "&.Mui-focused": {
+        backgroundColor: "#222222",
+        borderColor: colors.red,
+        boxShadow: `0 0 0 2px rgba(229, 9, 20, 0.35)`,
+      },
+    },
+    "& .MuiFilledInput-underline:before": {
+      display: "none",
+    },
+    "& .MuiFilledInput-underline:after": {
+      display: "none",
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color: "#AAAAAA",
+      opacity: 1,
+    },
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -63,49 +104,50 @@ export default function NewReviewForm({
       !formData.movieId ||
       !formData.reviewerName.trim() ||
       !formData.body.trim()
-    )
+    ) {
       return;
+    }
 
     onSubmit(formData);
 
-    alert("Form submitted, may the force be with you!");
+    alert("Review submitted — may the force be with you!");
 
-    // clears some fields
     setFormData((prev) => ({
       ...prev,
       reviewerName: "",
       title: "",
       body: "",
       rating: 5,
+      movieId: "",
     }));
   };
 
   return (
     <Paper
-      elevation={20}
+      elevation={12}
       sx={{
-        mt: 16,
-        p: { xs: 4, md: 8 },
-        borderRadius: 6,
+        mt: 6,
+        p: { xs: 3, md: 4 },
+        borderRadius: 4,
         bgcolor: colors.surface,
-        maxWidth: 1100,
+        maxWidth: 600,
         mx: "auto",
-        boxShadow: "0 40px 100px rgba(0,0,0,0.9)",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
         border: `1px solid ${colors.border}`,
       }}
     >
       <Typography
-        variant="h4"
+        variant="h5"
         align="center"
         fontWeight="bold"
         color={colors.red}
-        mb={4}
+        mb={3}
       >
         New Review
       </Typography>
 
       <Box component="form" onSubmit={handleSubmit}>
-        <Grid container spacing={4}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
               select
@@ -119,12 +161,7 @@ export default function NewReviewForm({
                   userReviewerId: e.target.value,
                 })
               }
-              sx={{
-                "& .MuiFilledInput-root": {
-                  bgcolor: colors.surface2,
-                  borderRadius: 3,
-                },
-              }}
+              sx={inputStyles}
             >
               <MenuItem value="65549e6a-2389-42c5-909a-4475fdbb3e69">
                 Ayla
@@ -137,7 +174,7 @@ export default function NewReviewForm({
 
           <Grid item xs={12} md={6}>
             <TextField
-              label="Your Display Name"
+              label="Display Name"
               variant="filled"
               fullWidth
               required
@@ -145,12 +182,7 @@ export default function NewReviewForm({
               onChange={(e) =>
                 setFormData({ ...formData, reviewerName: e.target.value })
               }
-              sx={{
-                "& .MuiFilledInput-root": {
-                  bgcolor: colors.surface2,
-                  borderRadius: 3,
-                },
-              }}
+              sx={inputStyles}
             />
           </Grid>
 
@@ -165,12 +197,7 @@ export default function NewReviewForm({
               onChange={(e) =>
                 setFormData({ ...formData, movieId: e.target.value })
               }
-              sx={{
-                "& .MuiFilledInput-root": {
-                  bgcolor: colors.surface2,
-                  borderRadius: 3,
-                },
-              }}
+              sx={inputStyles}
             >
               {movies.map((m) => (
                 <MenuItem key={m.id} value={m.id}>
@@ -182,19 +209,14 @@ export default function NewReviewForm({
 
           <Grid item xs={12}>
             <TextField
-              label="Review Title (optional)"
+              label="Review Title"
               variant="filled"
               fullWidth
               value={formData.title}
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
               }
-              sx={{
-                "& .MuiFilledInput-root": {
-                  bgcolor: colors.surface2,
-                  borderRadius: 3,
-                },
-              }}
+              sx={inputStyles}
             />
           </Grid>
 
@@ -203,20 +225,14 @@ export default function NewReviewForm({
               label="Your Review"
               variant="filled"
               multiline
-              rows={7}
+              rows={5}
               fullWidth
               required
-              placeholder="Write everything you thought..."
               value={formData.body}
               onChange={(e) =>
                 setFormData({ ...formData, body: e.target.value })
               }
-              sx={{
-                "& .MuiFilledInput-root": {
-                  bgcolor: colors.surface2,
-                  borderRadius: 3,
-                },
-              }}
+              sx={inputStyles}
             />
           </Grid>
 
@@ -224,17 +240,26 @@ export default function NewReviewForm({
             <Typography
               component="legend"
               gutterBottom
-              color={colors.textSecondary}
+              color={colors.white}
               fontWeight="bold"
+              fontSize="0.9rem"
             >
-              Your Rating
+              Rating
             </Typography>
 
             <Rating
               value={formData.rating}
               onChange={(_, v) => setFormData({ ...formData, rating: v || 5 })}
               size="large"
-              sx={{ color: colors.red }}
+              sx={{
+                color: colors.red,
+                "& .MuiRating-iconFilled": {
+                  color: colors.red,
+                },
+                "& .MuiRating-iconHover": {
+                  color: "#ff3333",
+                },
+              }}
             />
           </Grid>
 
@@ -246,19 +271,25 @@ export default function NewReviewForm({
               fullWidth
               disabled={submitting}
               sx={{
-                mt: 6,
-                width: "50%",
-                height: 70,
+                mt: 3,
+                height: 56,
                 bgcolor: colors.red,
-                fontSize: "1.5rem",
+                fontSize: "1.1rem",
                 fontWeight: "bold",
-                borderRadius: 38,
-                boxShadow: "0 15px 50px rgba(229,9,20,0.7)",
-                "&:hover": { bgcolor: "#ff0f1a" },
+                borderRadius: 28,
+                color: colors.white,
+                boxShadow: "0 10px 30px rgba(229,9,20,0.5)",
+                "&:hover": {
+                  bgcolor: "#ff0f1a",
+                  boxShadow: "0 15px 40px rgba(229,9,20,0.6)",
+                },
+                "&:disabled": {
+                  bgcolor: "#333",
+                },
               }}
             >
               {submitting ? (
-                <CircularProgress size={40} color="inherit" />
+                <CircularProgress size={30} color="inherit" />
               ) : (
                 "Submit Review"
               )}
