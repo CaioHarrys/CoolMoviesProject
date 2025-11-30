@@ -1,12 +1,13 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import React, { FC, useState } from 'react';
-import { Provider as ReduxProvider } from 'react-redux';
-import Head from 'next/head';
-import { createStore } from '../state';
-import { EnhancedStore } from '@reduxjs/toolkit';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { css, Global } from '@emotion/react'; // <-- adicionado
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import React, { FC, useState } from "react";
+import { Provider as ReduxProvider } from "react-redux";
+import Head from "next/head";
+import { createStore } from "../state";
+import { EnhancedStore } from "@reduxjs/toolkit";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { css, Global } from "@emotion/react";
+import "../styles/CoolerMovieCard.css";
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [store, setStore] = useState<EnhancedStore | null>(null);
@@ -15,7 +16,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
   React.useEffect(() => {
     const client = new ApolloClient({
       cache: new InMemoryCache(),
-      uri: '/graphql',
+      uri: "/graphql",
     });
 
     const store = createStore({ epicDependencies: { client } });
@@ -23,7 +24,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     setClient(client);
   }, []);
 
-  if (!store || !client) return <>{'Loading...'}</>;
+  if (!store || !client) return <>{"Loading..."}</>;
 
   return (
     <>
@@ -44,10 +45,11 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             padding: 0;
             height: 100%;
             width: 100%;
-            background: linear-gradient(135deg, #0F0F0F 0%, #0a0a0a 100%) !important;
+            background: linear-gradient(#1d1f23, #1f1d24, #151218);
             background-attachment: fixed;
-            color: #FFFFFF;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, sans-serif;
           }
 
           * {

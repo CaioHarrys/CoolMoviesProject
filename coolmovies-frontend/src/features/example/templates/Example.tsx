@@ -25,10 +25,10 @@ const Example = () => {
     fetchPolicy: "network-only",
   });
 
-  // Navegação sem react-router-dom
+  
   const handleGoToReviews = () => {
     window.location.href =
-      "/ReviewsPage"; // ou a rota exata que você usa no projeto
+      "/ReviewsPage"; 
   };
 
   return (

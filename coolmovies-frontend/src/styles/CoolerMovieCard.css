@@ -1,0 +1,222 @@
+/* ============================================= */
+/* COOLER MOVIE CARD – VERSÃO FINAL E CORRIGIDA  */
+/* ============================================= */
+
+.cooler-container {
+    display: flex !important;
+    flex-wrap: wrap;
+    /* gap: 2.5rem !important; */
+    justify-content: space-evenly;
+    padding: 3rem 1rem;
+    width: 100%;
+}
+
+@media (max-width: 960px) {
+    .cooler-container {
+        gap: 2rem !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .cooler-container {
+        gap: 1.5rem !important;
+        padding: 2rem 0.5rem;
+    }
+}
+
+/* CARD QUADRADO E PERFEITO */
+.cooler-card {
+    width: 340px;
+    max-width: 100%;
+    background-color: transparent !important;
+    border-radius: 1em !important;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: fit-content !important;
+}
+
+.cooler-card:hover {
+    box-shadow: 0 24px 60px rgba(229, 9, 20, 0.5);
+}
+
+/* POSTER 2:3 */
+.cooler-poster {
+    position: relative;
+    width: 100%;
+    padding-top: 150%;
+    overflow: hidden;
+    background: #000;
+}
+
+.cooler-poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.cooler-poster img:hover {
+    transform: scale(1.1);
+}
+
+/* CONTEÚDO */
+.cooler-content {
+    padding: 24px;
+    background: linear-gradient(to top, #111, #222);
+    color: white;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 310px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+}
+
+/* TEXTOS */
+.cooler-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.cooler-year {
+    text-align: center;
+    color: #999;
+    margin-bottom: 16px 0 20px;
+}
+
+/* BOTÃO – AGORA NUNCA MAIS ENCOLHE */
+.cooler-button {
+    min-height: 56px;
+    padding: 16px 24px;
+    background-color: #E50914;
+    color: white;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(229, 9, 20, 0.4);
+    margin: 8px 0 20px;
+    align-self: center;
+    width: 100%;
+    max-width: 280px;
+    box-sizing: border-box;
+}
+
+.cooler-button:hover {
+    background-color: #ff1420;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(229, 9, 20, 0.6);
+}
+
+/* REVIEWS */
+.cooler-reviews {
+    margin-top: 16px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+}
+
+.cooler-review-item-accordion {
+    padding: 16px 0;
+    border-bottom: 1px solid #444;
+}
+
+.cooler-review-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    padding: 8px 0;
+    position: relative;
+}
+
+.cooler-review-avatar {
+    width: 48px;
+    height: 48px;
+    background: #E50914;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.cooler-review-username-wrapper {
+    flex: 1;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.cooler-review-username {
+    font-weight: 600;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+/* LINHA VERMELHA ANIMADA */
+.cooler-review-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(229, 9, 20, 0.3);
+    border-radius: 3px;
+    width: 40px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left;
+}
+
+.cooler-review-item-accordion.open .cooler-review-underline {
+    width: 100%;
+    background: #E50914;
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.8);
+}
+
+/* CORPO DA REVIEW */
+.cooler-review-body-area {
+    margin-top: 16px;
+    padding-left: 64px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.cooler-review-title {
+    font-weight: bold;
+    color: #E50914;
+    margin-bottom: 6px;
+}
+
+.cooler-review-body {
+    color: #ccc;
+    line-height: 1.7;
+}
+
+.cooler-no-reviews {
+    text-align: center;
+    padding: 40px 20px;
+    color: #777;
+    font-style: italic;
+}

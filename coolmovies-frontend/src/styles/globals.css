@@ -13,3 +13,43 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.css-gdshtt-MuiContainer-root {
+    width: 100%;
+    margin-left: auto;
+    box-sizing: border-box;
+    margin-right: auto;
+    background-color: #0F0F0F;
+    padding: 0 !important;
+    min-height: 100vh;
+}
+.css-4z7gnm-MuiGrid-root>.MuiGrid-item {
+    padding-left: 0 !important;
+}
+.css-4z7gnm-MuiGrid-root>.MuiGrid-item {
+    padding-top: 0 !important;
+}
+.css-4z7gnm-MuiGrid-root {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100% !important;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-top: calc(-1 * 32px);
+    margin-right: 0 !important;
+    margin-left:0 !important;
+}
+
+.ReviewForms{
+    display: flex;
+    gap: 1.2em;
+    margin-top: 64px !important;
+}
