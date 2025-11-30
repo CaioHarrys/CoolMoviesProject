@@ -68,7 +68,9 @@ export default function NewReviewForm({
 
     onSubmit(formData);
 
-    // limpa alguns campos
+    alert("Form submitted, may the force be with you!");
+
+    // clears some fields
     setFormData((prev) => ({
       ...prev,
       reviewerName: "",
@@ -107,7 +109,7 @@ export default function NewReviewForm({
           <Grid item xs={12} md={6}>
             <TextField
               select
-              label="Quem está avaliando"
+              label="Reviewer"
               variant="filled"
               fullWidth
               value={formData.userReviewerId}
@@ -124,14 +126,18 @@ export default function NewReviewForm({
                 },
               }}
             >
-              <MenuItem value="65549e6a-2389-42c5-909a-4475fdbb3e69">Ayla</MenuItem>
-              <MenuItem value="5f1e6707-7c3a-4acd-b11f-fd96096abd5a">Chrono</MenuItem>
+              <MenuItem value="65549e6a-2389-42c5-909a-4475fdbb3e69">
+                Ayla
+              </MenuItem>
+              <MenuItem value="5f1e6707-7c3a-4acd-b11f-fd96096abd5a">
+                Chrono
+              </MenuItem>
             </TextField>
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              label="Seu nome (exibido)"
+              label="Your Display Name"
               variant="filled"
               fullWidth
               required
@@ -151,7 +157,7 @@ export default function NewReviewForm({
           <Grid item xs={12}>
             <TextField
               select
-              label="Filme"
+              label="Movie"
               variant="filled"
               fullWidth
               required
@@ -176,7 +182,7 @@ export default function NewReviewForm({
 
           <Grid item xs={12}>
             <TextField
-              label="Título da review (opcional)"
+              label="Review Title (optional)"
               variant="filled"
               fullWidth
               value={formData.title}
@@ -194,13 +200,13 @@ export default function NewReviewForm({
 
           <Grid item xs={12}>
             <TextField
-              label="Sua review"
+              label="Your Review"
               variant="filled"
               multiline
               rows={7}
               fullWidth
               required
-              placeholder="Conte tudo o que achou..."
+              placeholder="Write everything you thought..."
               value={formData.body}
               onChange={(e) =>
                 setFormData({ ...formData, body: e.target.value })
@@ -221,20 +227,18 @@ export default function NewReviewForm({
               color={colors.textSecondary}
               fontWeight="bold"
             >
-              Sua nota
+              Your Rating
             </Typography>
 
             <Rating
               value={formData.rating}
-              onChange={(_, v) =>
-                setFormData({ ...formData, rating: v || 5 })
-              }
+              onChange={(_, v) => setFormData({ ...formData, rating: v || 5 })}
               size="large"
               sx={{ color: colors.red }}
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} textAlign="center">
             <Button
               type="submit"
               variant="contained"
@@ -243,7 +247,8 @@ export default function NewReviewForm({
               disabled={submitting}
               sx={{
                 mt: 6,
-                height: 76,
+                width: "50%",
+                height: 70,
                 bgcolor: colors.red,
                 fontSize: "1.5rem",
                 fontWeight: "bold",
@@ -255,7 +260,7 @@ export default function NewReviewForm({
               {submitting ? (
                 <CircularProgress size={40} color="inherit" />
               ) : (
-                "Enviar Review"
+                "Submit Review"
               )}
             </Button>
           </Grid>
